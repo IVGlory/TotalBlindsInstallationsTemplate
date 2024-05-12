@@ -1,25 +1,29 @@
+// src/App.tsx
 import React from 'react';
-import logo from './logo.svg';
+import { BrowserRouter as Router, Route, RouteProps } from 'react-router-dom';
+import { Routes } from 'react-router';
+import Navbar from './components/Navbar';
+import Home from './pages/Home';
+import Services from './pages/Services';
+import Contact from './pages/Contact';
 import './App.css';
+import Booking from './pages/Booking';
+import BlindsInstallations from './pages/BlindsInstallations';
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Navbar />
+        <Routes>
+          <Route path="/" Component={Home} />
+          <Route path="/services" Component={Services} />
+          <Route path="/ContactInfo" Component={Contact} />
+          <Route path="/booking" Component={Booking} />
+          <Route path="/BlindsInstallation" Component={BlindsInstallations} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
