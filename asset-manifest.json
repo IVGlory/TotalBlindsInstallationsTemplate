@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/static/css/main.f855e6bc.css",
-    "main.js": "/static/js/main.4cd6f7dc.js",
-    "static/js/787.3b1d55aa.chunk.js": "/static/js/787.3b1d55aa.chunk.js",
-    "static/media/blinds1.webp": "/static/media/blinds1.154758daf478125b82da.webp",
-    "static/media/blinds3.jpg": "/static/media/blinds3.3a9328be6b66ad6d5e3f.jpg",
-    "static/media/blinds2.webp": "/static/media/blinds2.825e41d5ec70886cc348.webp",
-    "static/media/ac-repair-image3.jpg": "/static/media/ac-repair-image3.0d01ebc7621d62813749.jpg",
-    "static/media/total-blinds-installation-high-resolution-logo-black-transparent.png": "/static/media/total-blinds-installation-high-resolution-logo-black-transparent.0889de2fc9d07867b407.png",
-    "static/media/ac-repair-image4.jpg": "/static/media/ac-repair-image4.6c50e3ac2c942ce96953.jpg",
-    "index.html": "/index.html",
-    "main.f855e6bc.css.map": "/static/css/main.f855e6bc.css.map",
-    "main.4cd6f7dc.js.map": "/static/js/main.4cd6f7dc.js.map",
-    "787.3b1d55aa.chunk.js.map": "/static/js/787.3b1d55aa.chunk.js.map"
+    "main.css": "/TotalBlindsInstallationsTemplate/static/css/main.f855e6bc.css",
+    "main.js": "/TotalBlindsInstallationsTemplate/static/js/main.d4144ba0.js",
+    "static/js/787.3b1d55aa.chunk.js": "/TotalBlindsInstallationsTemplate/static/js/787.3b1d55aa.chunk.js",
+    "static/media/blinds1.webp": "/TotalBlindsInstallationsTemplate/static/media/blinds1.154758daf478125b82da.webp",
+    "static/media/blinds3.jpg": "/TotalBlindsInstallationsTemplate/static/media/blinds3.3a9328be6b66ad6d5e3f.jpg",
+    "static/media/blinds2.webp": "/TotalBlindsInstallationsTemplate/static/media/blinds2.825e41d5ec70886cc348.webp",
+    "static/media/ac-repair-image3.jpg": "/TotalBlindsInstallationsTemplate/static/media/ac-repair-image3.0d01ebc7621d62813749.jpg",
+    "static/media/total-blinds-installation-high-resolution-logo-black-transparent.png": "/TotalBlindsInstallationsTemplate/static/media/total-blinds-installation-high-resolution-logo-black-transparent.0889de2fc9d07867b407.png",
+    "static/media/ac-repair-image4.jpg": "/TotalBlindsInstallationsTemplate/static/media/ac-repair-image4.6c50e3ac2c942ce96953.jpg",
+    "index.html": "/TotalBlindsInstallationsTemplate/index.html",
+    "main.f855e6bc.css.map": "/TotalBlindsInstallationsTemplate/static/css/main.f855e6bc.css.map",
+    "main.d4144ba0.js.map": "/TotalBlindsInstallationsTemplate/static/js/main.d4144ba0.js.map",
+    "787.3b1d55aa.chunk.js.map": "/TotalBlindsInstallationsTemplate/static/js/787.3b1d55aa.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f855e6bc.css",
-    "static/js/main.4cd6f7dc.js"
+    "static/js/main.d4144ba0.js"
   ]
 }
