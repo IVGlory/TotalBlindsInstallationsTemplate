@@ -31,7 +31,7 @@ const Navbar: React.FC = () => {
           <img src={logoImage} alt="Logo" style={{ height: 40 }} />
         </Box>
         <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap' }}>
-          <Button color="inherit" component={Link} to="/" style={{ color: 'black', backgroundColor: location.pathname === '/' ? "#D3D3D3" : "#f2f2f2", margin: '5px' }}>Home</Button>
+          <Button color="inherit" component={Link} to="/TotalBlindsInstallationsTemplate" style={{ color: 'black', backgroundColor: location.pathname === '/' ? "#D3D3D3" : "#f2f2f2", margin: '5px' }}>Home</Button>
           <Button color="inherit" onClick={handleServicesMenuOpen} style={{ color: 'black', backgroundColor: location.pathname === '/BlindsInstallation' ? "#D3D3D3" : "#f2f2f2", margin: '5px' }}>Services</Button>
           <Button color="inherit" component={Link} to="/ContactInfo" style={{ color: 'black', margin: '5px' }}>Contact</Button>
           <Button color="inherit" component={Link} to="/booking" style={{ color: 'black', backgroundColor: location.pathname === '/booking' ? "#D3D3D3" : "#f2f2f2", margin: '5px' }}>Book Appointment</Button>

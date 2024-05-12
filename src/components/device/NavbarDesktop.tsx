@@ -33,7 +33,7 @@ const Navbar: React.FC = () => {
         </Box>
         <Typography variant="h6" component="div" style={{ flexGrow: 1, color: 'black' }} align="left">
         </Typography>
-        <Button color="inherit" component={Link} to="/" style={{ color: 'black', backgroundColor: location.pathname === '/' ? "#D3D3D3": "#f2f2f2"}}>Home</Button>
+        <Button color="inherit" component={Link} to="/TotalBlindsInstallationsTemplate" style={{ color: 'black', backgroundColor: location.pathname === '/TotalBlindsInstallationsTemplate' ? "#D3D3D3": "#f2f2f2"}}>Home</Button>
         
         {/* Services Dropdown */}
         <Button color="inherit" onClick={handleServicesMenuOpen} style={{ color: 'black', backgroundColor: location.pathname === '/BlindsInstallation' ? "#D3D3D3": "#f2f2f2" }}>Services</Button>
