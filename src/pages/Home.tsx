@@ -6,7 +6,7 @@ import acRepairImage from '../assets/homePage.jpg';
 const useStyles = makeStyles({
   '@global': {
     'html, body': {
-      overflow: 'hidden',
+      overflow: 'auto', // Enable scrolling
       height: '100%',
       margin: 0,
       padding: 0,
@@ -25,7 +25,7 @@ const useStyles = makeStyles({
     justifyContent: 'center',
     textAlign: 'center',
     padding: '20px',
-    overflow: 'hidden',
+    overflow: 'hidden', // Keep overflow hidden for hero section
   },
   contentContainer: {
     position: 'relative',
