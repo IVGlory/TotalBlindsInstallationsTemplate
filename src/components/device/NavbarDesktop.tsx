@@ -18,9 +18,10 @@ const Navbar: React.FC = () => {
   return (
     <AppBar position="sticky">
       <Toolbar style={{ minHeight: 60 }}>
+        {/*Todo: addlogo
         <Box sx={{ mr: 2 }}>
           <img src={logoImage} alt="Logo" style={{ height: 40 }} />
-        </Box>
+        </Box>*/}
         <Typography component="div" style={{ flexGrow: 1 }} align="left">
         </Typography>
         <Button
