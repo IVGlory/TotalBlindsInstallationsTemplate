@@ -14,9 +14,8 @@ const useStyles = makeStyles(() => ({
     paddingLeft: '5%',
     paddingTop: '2.5%',
     paddingBottom: '2.5%', // Adjust the padding as needed
-    backgroundColor: '#F6F3E7', // Tan background color
     minHeight: '100vh', // Ensure full height of the page
-    display: 'static',
+    backgroundColor: "#000000"
   },
   employeeImage: {
     width: '200px',

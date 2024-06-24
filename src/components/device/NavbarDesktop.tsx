@@ -4,51 +4,76 @@ import { Link, useLocation } from 'react-router-dom';
 import logoImage from '../../assets/total-blinds-installation-high-resolution-logo-black-transparent.png';
 
 const Navbar: React.FC = () => {
-
   const location = useLocation(); // Get the current location
-  const [servicesAnchorEl, setServicesAnchorEl] = useState<null | HTMLElement>(null);
-  const [contactAnchorEl, setContactAnchorEl] = useState<null | HTMLElement>(null);
+  const [productsAnchorEl, setProductsAnchorEl] = useState<null | HTMLElement>(null);
 
-  const handleServicesMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
-    setServicesAnchorEl(event.currentTarget);
+  const handleProductsMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+    setProductsAnchorEl(event.currentTarget);
   };
 
-  const handleServicesMenuClose = () => {
-    setServicesAnchorEl(null);
-  };
-
-  const handleContactMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
-    setContactAnchorEl(event.currentTarget);
-  };
-
-  const handleContactMenuClose = () => {
-    setContactAnchorEl(null);
+  const handleProductsMenuClose = () => {
+    setProductsAnchorEl(null);
   };
 
   return (
-    <AppBar position="sticky" style={{ backgroundColor: '#f2f2f2', color: '#333' }}>
-      <Toolbar style={{ minHeight: 48 }}>
+    <AppBar position="sticky">
+      <Toolbar style={{ minHeight: 60 }}>
         <Box sx={{ mr: 2 }}>
           <img src={logoImage} alt="Logo" style={{ height: 40 }} />
         </Box>
-        <Typography variant="h6" component="div" style={{ flexGrow: 1, color: 'black' }} align="left">
+        <Typography component="div" style={{ flexGrow: 1 }} align="left">
         </Typography>
-        <Button color="inherit" component={Link} to="/TotalBlindsInstallationsTemplate" style={{ color: 'black', backgroundColor: location.pathname === '/TotalBlindsInstallationsTemplate' ? "#D3D3D3": "#f2f2f2"}}>Home</Button>
-        
-        {/* Services Dropdown */}
-        <Button color="inherit" onClick={handleServicesMenuOpen} style={{ color: 'black', backgroundColor: location.pathname === '/BlindsInstallation' ? "#D3D3D3": "#f2f2f2" }}>Services</Button>
-        <Menu
-          anchorEl={servicesAnchorEl}
-          open={Boolean(servicesAnchorEl)}
-          onClose={handleServicesMenuClose}
+        <Button
+          color="inherit"
+          component={Link}
+          to="/TotalBlindsInstallationsTemplate"
+          style={{ backgroundColor: location.pathname === '/TotalBlindsInstallationsTemplate' ? "rgba(236,201,130,0.25)" : "#000000" }}
         >
-          <MenuItem onClick={handleServicesMenuClose} component={Link} to="/BlindsInstallation" style={{ color: 'black' }}>Blinds Installation</MenuItem>
+          Home
+        </Button>
+
+        {/* Services Dropdown */}
+        <Button
+          color="inherit"
+          onClick={handleProductsMenuOpen}
+          style={{ backgroundColor: location.pathname === '/WoodBlinds' ||
+            location.pathname === '/FauxWoodBlinds' || 
+            location.pathname === '/FabricBlinds' ||
+            location.pathname === '/MotorizedBlinds'
+            ? "rgba(236,201,130,0.25)" : "#000000" }}
+        >
+          Products
+        </Button>
+        <Menu
+          anchorEl={productsAnchorEl}
+          open={Boolean(productsAnchorEl)}
+          onClose={handleProductsMenuClose}
+          disableScrollLock // Disable scroll lock
+        >
+          <MenuItem onClick={handleProductsMenuClose} component={Link} to="/WoodBlinds">Wood Blinds</MenuItem>
+          <MenuItem onClick={handleProductsMenuClose} component={Link} to="/FauxWoodBlinds">Faux Wood Blinds</MenuItem>
+          <MenuItem onClick={handleProductsMenuClose} component={Link} to="/FabricBlinds">Fabric Blinds</MenuItem>
+          <MenuItem onClick={handleProductsMenuClose} component={Link} to="/MotorizedBlinds">Motorized Blinds</MenuItem>
         </Menu>
-        
+
         {/* Contact Dropdown */}
-        <Button color="inherit" component={Link} to="ContactInfo" style={{ color: 'black', backgroundColor: location.pathname === '/ContactInfo' ? "#D3D3D3": "#f2f2f2" }}>Contact</Button>
-        
-        <Button color="inherit" component={Link} to="/booking" style={{ color: 'black', backgroundColor: location.pathname === '/booking' ? "#D3D3D3": "#f2f2f2" }}>Book Appointment</Button>
+        <Button
+          color="inherit"
+          component={Link}
+          to="ContactInfo"
+          style={{ backgroundColor: location.pathname === '/ContactInfo' ? "rgba(236,201,130,0.25)" : "#000000" }}
+        >
+          Contact
+        </Button>
+
+        <Button
+          color="inherit"
+          component={Link}
+          to="/Booking"
+          style={{ backgroundColor: location.pathname === '/Booking' ? "rgba(236,201,130,0.25)" : "#000000" }}
+        >
+          Book Appointment
+        </Button>
       </Toolbar>
     </AppBar>
   );

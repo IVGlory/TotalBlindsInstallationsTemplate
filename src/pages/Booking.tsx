@@ -1,6 +1,5 @@
 import React from 'react';
 import AppointmentBooking from '../GoogleCalendarScheduling';
-import bookingImage from '../assets/ac-repair-image4.jpg';
 import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles(() => ({
@@ -14,7 +13,6 @@ const Booking: React.FC = () => {
   const classes = useStyles();
   return (
     <div className={classes.container}>
-      <img src={bookingImage} alt="Booking Image" style={{ height: '100%', width: '100%', objectFit: 'cover' }} />
         <AppointmentBooking />
     </div>
   );
