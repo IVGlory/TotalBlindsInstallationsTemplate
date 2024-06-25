@@ -18,10 +18,10 @@ const useStyles = makeStyles({
     alignItems: 'center',
     justifyContent: 'center',
     textAlign: 'center',
-    padding: '20px',
   },
   contentContainer: {
     position: 'relative',
+    paddingBottom: '100px',
     zIndex: 1,
   },
   overlay: {
@@ -59,13 +59,12 @@ const Home: React.FC = () => {
     // Trigger animation after component mounts
     setAnimate(true);
 
-    // Scroll to bottom when component mounts
-    window.scrollTo(0, document.body.scrollHeight);
+    // Scroll to top when component mounts
+    window.scrollTo(0, 0);
 
     // Clean up when component unmounts to restore default scrolling
     return () => {
       document.body.style.overflow = 'visible';
-      window.scrollTo(0, 0);
     };
   }, []);
 
