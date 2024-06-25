@@ -14,7 +14,7 @@ import { ThemeProvider } from '@emotion/react';
 const App: React.FC = () => {
   return (
     <ThemeProvider theme={Theme}>
-      <Router>
+      <Router basename='/TotalBlindsInstallationsTemplate/'>
         <div className="App">
           <Navbar />
           <Routes>
