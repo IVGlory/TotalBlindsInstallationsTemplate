@@ -9,7 +9,7 @@ const useStyles = makeStyles(() => ({
     paddingLeft: '5%',
     paddingTop: '2.5%',
     paddingBottom: '2.5%',
-    backgroundColor: '#000000',
+    backgroundColor: 'rgba(0,0,0,.92)',
     minHeight: '100vh',
   },
 }));

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@mui/styles';
 import { Typography, Container } from '@mui/material';
-import acRepairImage from '../assets/homePage.jpg';
+import homePage from '../assets/homePage.jpg';
 
 const useStyles = makeStyles({
   '@global': {
@@ -17,7 +17,7 @@ const useStyles = makeStyles({
   },
   hero: {
     position: 'relative',
-    backgroundImage: `url(${acRepairImage})`,
+    backgroundImage: `url(${homePage})`,
     backgroundSize: 'cover',
     minHeight: '100vh',
     display: 'flex',
@@ -25,7 +25,6 @@ const useStyles = makeStyles({
     justifyContent: 'center',
     textAlign: 'center',
     padding: '20px',
-    overflow: 'hidden', // Keep overflow hidden for hero section
   },
   contentContainer: {
     position: 'relative',

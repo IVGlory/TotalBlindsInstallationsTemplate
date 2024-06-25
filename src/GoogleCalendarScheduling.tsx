@@ -1,13 +1,19 @@
 import React from 'react';
+import { InlineWidget } from 'react-calendly';
 
 const GoogleCalendarScheduling: React.FC = () => {
   return (
-    <iframe
-      src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ3ac_7Ku3yV56Gh2JeuFEwXxK6PcJiHnI_QXnFY5UkGFkTiKMyyZigiXLx0IVes1dBDLVD92-NZ?gv=true"
-      style={{ border: 0, width: '100%', height: 800 }}
-      frameBorder={0}
-      title="Google Calendar Scheduling"
-    />
+    <div >
+      <InlineWidget url="https://calendly.com/totalblindinstallations/lux-blind-consultation"
+      styles={{ height: '850px', width: "100%" }}
+      pageSettings={{
+        backgroundColor: '#000000',
+        hideEventTypeDetails: false,
+        hideLandingPageDetails: false,
+        primaryColor: '#ecc982',
+        textColor: '#ecc982'
+      }}/>
+    </div>
   );
 };
 

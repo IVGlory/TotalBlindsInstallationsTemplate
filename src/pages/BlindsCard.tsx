@@ -40,7 +40,7 @@ const BlindsCard: React.FC<BlindsCardProps> = ({ image, text, description, onCli
       in={true}
       mountOnEnter
       unmountOnExit
-      timeout={index * 500}
+      timeout={index * 250}
     >
       <Grid item xs={12} sm={6} md={10} className={classes.gridItem}>
         <Card className={classes.card}>
