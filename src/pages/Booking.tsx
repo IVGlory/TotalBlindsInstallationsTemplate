@@ -1,18 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import AppointmentBooking from '../GoogleCalendarScheduling';
 import { makeStyles } from '@mui/styles';
 import homePage from '../assets/homePage.jpg';
-import Typography from '@mui/material/Typography';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles({
+  '@global': {
+    'html, body': {
+      overflow: 'hidden', // Disable scrolling globally for the home page
+    },
+  },
   container: {
     position: 'relative',
     backgroundImage: `url(${homePage})`,
     backgroundSize: 'cover',
     paddingLeft: '5%',
-    paddingTop: '2.5%',
-    paddingBottom: '2.5%', // Adjust the padding as needed
-    minHeight: '100vh',
+    minHeight: 'calc(100vh)', // Assuming the navbar height is 64px
     alignItems: 'center',
     justifyContent: 'center',
     textAlign: 'center',
@@ -22,21 +24,28 @@ const useStyles = makeStyles(() => ({
     position: 'absolute',
     top: 0,
     left: 0,
-    paddingTop: '2.5%',
-    paddingBottom: '2.5%',
     width: '100%',
-    minHeight: '100vh', // Ensure it covers the full viewport height on mobile
+    height: '100%', // Ensure it covers the full container height
     backgroundColor: 'rgba(0, 0, 0, .92)',
     zIndex: 0,
-  }
-}));
+  },
+});
 
 const Booking: React.FC = () => {
   const classes = useStyles();
+
+
+  useEffect(() => {
+    // Set scroll position to 0 on mount
+    window.scrollTo(0, 0);
+    // Clean up when component unmounts to restore default scrolling
+    return () => {
+      document.body.style.overflow = 'visible';
+    };
+  }, []);
   return (
     <div className={classes.container}>
       <div className={classes.overlay}>
-        <Typography variant="h1">Manage Bookings</Typography>
         <AppointmentBooking />
       </div>
     </div>

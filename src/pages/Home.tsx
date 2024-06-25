@@ -6,16 +6,10 @@ import homePage from '../assets/homePage.jpg';
 const useStyles = makeStyles({
   '@global': {
     'html, body': {
-      overflow: 'auto', // Enable scrolling
-      height: '100%',
-      margin: 0,
-      padding: 0,
-    },
-    '#root': {
-      height: '100%',
+      overflow: 'hidden', // Disable scrolling globally for the home page
     },
   },
-  hero: {
+  hero: { 
     position: 'relative',
     backgroundImage: `url(${homePage})`,
     backgroundSize: 'cover',
@@ -64,6 +58,15 @@ const Home: React.FC = () => {
   useEffect(() => {
     // Trigger animation after component mounts
     setAnimate(true);
+
+    // Scroll to bottom when component mounts
+    window.scrollTo(0, document.body.scrollHeight);
+
+    // Clean up when component unmounts to restore default scrolling
+    return () => {
+      document.body.style.overflow = 'visible';
+      window.scrollTo(0, 0);
+    };
   }, []);
 
   return (
