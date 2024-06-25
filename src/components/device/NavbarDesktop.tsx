@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { AppBar, Toolbar, Typography, Button, Menu, MenuItem, Box } from '@mui/material';
 import { Link, useLocation } from 'react-router-dom';
-import logoImage from '../../assets/total-blinds-installation-high-resolution-logo-black-transparent.png';
 
 const Navbar: React.FC = () => {
   const location = useLocation(); // Get the current location
