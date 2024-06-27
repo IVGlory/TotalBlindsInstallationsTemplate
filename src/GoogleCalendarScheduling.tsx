@@ -12,6 +12,12 @@ const GoogleCalendarScheduling: React.FC = () => {
         hideLandingPageDetails: false,
         primaryColor: '#ecc982',
         textColor: '#ecc982'
+      }}
+      prefill={{
+        customAnswers: {
+          a1: 'a1',
+        },
+        date: new Date(Date.now() + 86400000)
       }}/>
     </div>
   );

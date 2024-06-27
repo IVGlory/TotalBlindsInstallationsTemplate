@@ -48,7 +48,7 @@ const BlindsDialog: React.FC<BlindsDialogProps> = ({ open, onClose, selectedImag
     >
       <DialogTitle>
         {selectedText}
-        <IconButton aria-label="close" onClick={onClose} sx={{ position: 'absolute', right: 8, top: 8 }}>
+        <IconButton aria-label="close" onClick={onClose} sx={{color: '#ecc982', position: 'absolute', right: 8, top: 8 }}>
           <Close />
         </IconButton>
       </DialogTitle>
@@ -59,7 +59,7 @@ const BlindsDialog: React.FC<BlindsDialogProps> = ({ open, onClose, selectedImag
             {selectedDescription}
           </Typography>
         </CardContent>
-        <Button color="inherit" component={Link} to="/booking" className={classes.button}>Book Appointment</Button>
+        <Button color="inherit" component={Link} to="/Booking" className={classes.button}>Book Appointment</Button>
       </DialogContent>
     </Dialog>
   );

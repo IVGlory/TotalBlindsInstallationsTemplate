@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Contact from './pages/Contact';
@@ -14,7 +14,7 @@ import { ThemeProvider } from '@emotion/react';
 const App: React.FC = () => {
   return (
     <ThemeProvider theme={Theme}>
-      <Router basename='/TotalBlindsInstallationsTemplate/'>
+      <Router>
         <div className="App">
           <Navbar />
           <Routes>

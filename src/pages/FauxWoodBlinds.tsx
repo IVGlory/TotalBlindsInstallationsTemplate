@@ -12,7 +12,7 @@ const useStyles = makeStyles({
     position: 'relative',
     backgroundImage: `url(${fauxBlinds})`,
     backgroundSize: 'cover',
-    minHeight: '100vh',
+    minHeight: '100%',
     alignItems: 'center',
     justifyContent: 'center',
     textAlign: 'center',

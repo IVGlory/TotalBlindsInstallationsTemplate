@@ -75,6 +75,19 @@ const Theme = createTheme({
         },
       },
     },
+    MuiAccordion: {
+      styleOverrides: {
+        root: {
+          backgroundColor: 'rgba(0,0,0,0)', // Background color of the dialog
+          '@media (max-width: 600px)': { // Adjust the breakpoint as needed
+            marginLeft: '0%',
+            marginRight: '0%',
+          },
+          marginLeft: '25%',
+          marginRight: '25%'
+        },
+      },
+    },
   },
 });
 
