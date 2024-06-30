@@ -13,15 +13,25 @@ interface GoogleCalendarSchedulingProps {
 }
 
 const GoogleCalendarScheduling: React.FC<GoogleCalendarSchedulingProps> = ({ bookingState }) => {
+
+  const mountTypeMap: Map<string, string> = new Map();
+  mountTypeMap.set("Inside Mount", "1");
+  mountTypeMap.set("Outside Mount", "2");
+
+  const lightControlMap: Map<string, string> = new Map();
+  lightControlMap.set("Light Filtering", "1");
+  lightControlMap.set("Room Darkening", "2");
+  lightControlMap.set("Blackout", "3");
+
   let mount = "";
   let light = "";
   if(isDefined(bookingState)){
-    mount =  bookingState.mountType.split(' ')
+    mount =  mountTypeMap.get(bookingState.mountType.split(' ')
     .map((word: string) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-    .join(' ');
-    light =  bookingState.lightControl.split(' ')
+    .join(' '))!;
+    light =  lightControlMap.get(bookingState.lightControl.split(' ')
     .map((word: string) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-    .join(' ');
+    .join(' '))!;
     console.log("bookingState?.mountType: " + mount)
   console.log("bookingState?.lightControl: " + light)
   }
