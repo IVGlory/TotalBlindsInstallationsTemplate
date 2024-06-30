@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import AppointmentBooking from '../GoogleCalendarScheduling';
 import { makeStyles } from '@mui/styles';
 import homePage from '../assets/homePage.jpg';
+import { useLocation } from 'react-router-dom';
 
 const useStyles = makeStyles({
   '@global': {
@@ -33,20 +34,25 @@ const useStyles = makeStyles({
 
 const Booking: React.FC = () => {
   const classes = useStyles();
-
+  const location = useLocation();
+  const bookingState = location.state as {
+    mountType: string;
+    lightControl: string;
+    selectedColor: string;
+    selectedText: string;
+  } | undefined;
 
   useEffect(() => {
-    // Set scroll position to 0 on mount
     window.scrollTo(0, 0);
-    // Clean up when component unmounts to restore default scrolling
     return () => {
       document.body.style.overflow = 'visible';
     };
   }, []);
+
   return (
     <div className={classes.container}>
       <div className={classes.overlay}>
-        <AppointmentBooking />
+        <AppointmentBooking bookingState={bookingState} />
       </div>
     </div>
   );

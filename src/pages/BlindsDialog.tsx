@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { makeStyles } from '@mui/styles';
 import { 
   Dialog, DialogContent, DialogTitle, IconButton, Typography, Button, 
-  CardContent, Slide, SlideProps, Box, Accordion, AccordionSummary, AccordionDetails
+  Slide, SlideProps, Box, Accordion, AccordionSummary, AccordionDetails
 } from '@mui/material';
 import { Close, ExpandMore } from '@mui/icons-material';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
@@ -11,6 +11,7 @@ import InfoIcon from '@mui/icons-material/Info';
 import Tooltip from '@mui/material/Tooltip';
 import { Link } from 'react-router-dom';
 import OptionSection from './OptionSectionProps';
+import { useNavigate } from 'react-router-dom';
 
 const useStyles = makeStyles(() => ({
   dialogImage: {
@@ -146,6 +147,7 @@ const BlindsDialog: React.FC<BlindsDialogProps> = ({
   initialColor
 }) => {
   const classes = useStyles();
+  const navigate = useNavigate();
   const [selectedColor, setSelectedColor] = useState(initialColor);
   const [mountType, setMountType] = useState<string | null>(null);
   const [lightControl, setLightControl] = useState<string | null>(null);
@@ -170,6 +172,23 @@ const BlindsDialog: React.FC<BlindsDialogProps> = ({
   const handleLightControlChange = (control: string) => {
     setLightControl(control);
   };
+
+  const handleBookAppointment = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (!selectedColor || !mountType || !lightControl) {
+      e.preventDefault();
+      alert('Please select all options before booking.');
+    } else {
+      navigate('/Booking', {
+        state: {
+          mountType,
+          lightControl,
+          selectedColor,
+          selectedText
+        }
+      });
+    }
+  };
+
 
   useEffect(() => {
     if (open) {
@@ -261,11 +280,6 @@ const BlindsDialog: React.FC<BlindsDialogProps> = ({
             </IconButton>
           )}
         </Box>
-        <CardContent>
-          <Typography variant="body1" component="p">
-            {selectedDescription}
-          </Typography>
-        </CardContent>
         
         <Accordion className={classes.accordion}>
           <AccordionSummary
@@ -308,17 +322,24 @@ const BlindsDialog: React.FC<BlindsDialogProps> = ({
             />
           </AccordionDetails>
         </Accordion>
+
+        <Accordion className={classes.accordion}>
+          <AccordionSummary
+            expandIcon={<ExpandMore />}
+            className={classes.accordionSummary}
+          >
+            <Typography sx={{ fontWeight: 'bold' }}>Details</Typography>
+          </AccordionSummary>
+          <AccordionDetails className={classes.accordionDetails}>
+            <Typography variant="body1" component="p">
+              {selectedDescription}
+            </Typography>
+          </AccordionDetails>
+        </Accordion>
         <Button 
           color="inherit" 
-          component={Link} 
-          to="/Booking" 
           className={classes.button}
-          onClick={(e) => {
-            if (!selectedColor || !mountType || !lightControl) {
-              e.preventDefault();
-              alert('Please select all options before booking.');
-            }
-          }}
+          onClick={handleBookAppointment}
         >
           Book Appointment
         </Button>
