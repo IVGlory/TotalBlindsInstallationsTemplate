@@ -83,11 +83,17 @@ const Theme = createTheme({
             marginLeft: '0%',
             marginRight: '0%',
           },
-          marginLeft: '25%',
-          marginRight: '25%'
+          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.0) !important',
         },
       },
     },
+    MuiSvgIcon:{
+      styleOverrides: {
+        root: {
+          color: '#ecc982',
+        },
+      },
+    }
   },
 });
 

@@ -12,13 +12,12 @@ import Tooltip from '@mui/material/Tooltip';
 import { Link } from 'react-router-dom';
 import OptionSection from './OptionSectionProps';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   dialogImage: {
     width: '100%',
     height: '100%',
     position: 'relative',
     borderRadius: '15px',
-    overflow: 'hidden',
     boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)',
   },
   dialogContent: {
@@ -34,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '25px !important',
     transition: 'all 0.3s ease-in-out !important',
     '&:hover': {
-      backgroundColor:'rgba(236, 201, 130, 0.25)',
+      backgroundColor: 'rgba(236, 201, 130, 0.25)',
     },
   },
   overlayText: {
@@ -96,28 +95,34 @@ const useStyles = makeStyles((theme) => ({
     right: 0,
   },
   accordion: {
-    marginTop: '20px !important',
+    width: '100%',  // Ensure the accordion covers the full width
+    padding: '0px',
     borderRadius: '10px !important',
-    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1) !important',
+    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.0) !important',
     '&:before': {
       display: 'none',
     },
   },
   accordionSummary: {
-    backgroundColor: '#f5f5f5',
+    width: '100%',  // Ensure the accordion summary covers the full width
     borderRadius: '10px',
     '&.Mui-expanded': {
       borderBottomLeftRadius: 0,
       borderBottomRightRadius: 0,
+      '&:hover': {
+        backgroundColor: 'rgba(236, 201, 130, 0.25)', // Golden hover background color
+        justifyContent: 'center',
+      },
     },
   },
   accordionDetails: {
+    width: '95%',  // Ensure the accordion details cover the full width
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    padding: '16px',
   },
 }));
+
 
 interface BlindsDialogProps {
   open: boolean;
