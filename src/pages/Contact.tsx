@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles } from '@mui/styles';
 import { Typography, Grid, Box, Divider, IconButton, Accordion, AccordionSummary, AccordionDetails, useMediaQuery } from '@mui/material';
 import FacebookIcon from '@mui/icons-material/Facebook';
@@ -77,13 +77,17 @@ const useStyles = makeStyles(() => ({
 const Contact: React.FC = () => {
   const classes = useStyles();
   const isMobile = useMediaQuery('(max-width:600px)');
+  useEffect(() => {
+    // Set scroll position to 0 on mount
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className={classes.container}>
       <div className={classes.overlay}></div>
       <div className={classes.content}>
         <Grid container spacing={2} className={classes.section}>
           <Grid item xs={12}>
-            <Typography variant="h1" gutterBottom>FAQ</Typography>
+            <Typography variant="h2" gutterBottom>Lux Managment Team</Typography>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6} md={3}>
                 <img src={employee1} alt="Employee 1" className={classes.employeeImage} />
@@ -111,7 +115,7 @@ const Contact: React.FC = () => {
         <Divider sx={{ my: 4 }} />
         <Grid container spacing={2} className={classes.faqGrid}>
           <Grid item xs={12}>
-            <Typography variant="h5" gutterBottom>Frequently Asked Questions</Typography>
+            <Typography variant="h2" gutterBottom>Frequently Asked Questions</Typography>
             <Accordion>
               <AccordionSummary className={classes.accordionSummary}>
                 <Typography>What types of blinds do you offer?</Typography>
@@ -134,14 +138,14 @@ const Contact: React.FC = () => {
         <Grid container spacing={2} direction="row" wrap={isMobile ? "wrap" : "nowrap"} className={classes.section}>
           <Grid item xs={12} md={4}>
             <Box>
-              <Typography variant="h5" gutterBottom>Contact Information</Typography>
+              <Typography variant="h2" gutterBottom>Contact Info</Typography>
               <Typography variant="body1">Email: totalblindinstallations@gmail.com</Typography>
               <Typography variant="body1">Phone: (123) 456-7890</Typography>
             </Box>
           </Grid>
           <Grid item xs={12} md={4}>
             <Box>
-              <Typography variant="h5" gutterBottom>Business Hours</Typography>
+              <Typography variant="h2" gutterBottom>Business Hours</Typography>
               <Typography variant="body1">Monday - Friday: 9:00 AM - 5:00 PM</Typography>
               <Typography variant="body1">Saturday: 10:00 AM - 3:00 PM</Typography>
               <Typography variant="body1">Sunday: Closed</Typography>
@@ -149,7 +153,7 @@ const Contact: React.FC = () => {
           </Grid>
           <Grid item xs={12} md={4}>
             <Box>
-              <Typography variant="h5" gutterBottom>Connect with Us</Typography>
+              <Typography variant="h2" gutterBottom>Connect with Us</Typography>
               <IconButton aria-label="Facebook" href="https://www.facebook.com/totalblinds" target="_blank" sx={{ color: '#ecc982' }}>
                 <FacebookIcon />
               </IconButton>

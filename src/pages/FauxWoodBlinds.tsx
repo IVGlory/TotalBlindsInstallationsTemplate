@@ -1,9 +1,9 @@
 import React from 'react';
 import BlindsSection from './BlindsSection';
-import blinds5 from '../assets/blinds2.jpg';
-import blinds6 from '../assets/blinds6.jpg';
-import blinds7 from '../assets/blinds7.jpg';
-import blinds8 from '../assets/blinds8.jpg';
+import blinds1 from '../assets/blinds1.webp';
+import blinds2 from '../assets/blinds2.webp';
+import blinds3 from '../assets/blinds3.jpg';
+import blinds4 from '../assets/blinds4.jpg';
 import { makeStyles } from '@mui/styles';
 import fauxBlinds from '../assets/homePage.jpg';
 
@@ -19,13 +19,60 @@ const useStyles = makeStyles({
   },
 });
 
+interface BlindData {
+  images: { [key: string]: string };
+  text: string;
+  description: string;
+}
+
 const FauxWoodBlinds: React.FC = () => {
   const classes = useStyles();
-  const blindsData = [
-    { image: blinds5, text: 'Pleated Blinds', description: 'These blinds feature crisp, pleated fabric that concertinas as they are raised.' },
-    { image: blinds6, text: 'Cellular Blinds', description: 'Known for their energy efficiency, cellular blinds have a unique honeycomb design that traps air.' },
-    { image: blinds7, text: 'Panel Blinds', description: 'Designed for large windows or as room dividers, panel blinds consist of wide fabric panels.' },
-    { image: blinds8, text: 'Sheer Blinds', description: 'Sheer blinds combine the functionality of blinds with the softness of sheer fabric.' },
+  const blindsData: BlindData[] = [
+    { 
+      images: {
+        'Natural': blinds1,
+        'Mahogany': blinds2,
+        'White': blinds3,
+      },
+      text: 'Venetian Blinds',
+      description: 'Elegant and versatile, Venetian blinds offer precise control over light and privacy.'
+    },
+    { 
+      images: {
+        'Beige': blinds2,
+        'Gray': blinds3,
+        'Brown': blinds4,
+        'Green': blinds3,
+        'Blue': blinds4,
+        'Pink': blinds1,
+      },
+      text: 'Roman Blinds',
+      description: 'Timeless and sophisticated, Roman blinds add a touch of luxury to any room.'
+    },
+    { 
+      images: {
+        'White': blinds3,
+        'Black': blinds4,
+        'Silver': blinds1,
+        'Beige': blinds3,
+        'Gray': blinds4,
+        'Brown': blinds1,
+        'Green': blinds3,
+        'Blue': blinds4,
+        'Pink': blinds1,
+      },
+      text: 'Vertical Blinds',
+      description: 'Modern and practical, vertical blinds are perfect for large windows and sliding glass doors.'
+    },
+    { 
+      images: {
+        'Cream': blinds4,
+        'Navy': blinds1,
+        'Green': blinds2,
+      },
+      text: 'Roller Blinds',
+      description: 'Sleek and minimalist, roller blinds offer a clean and contemporary look to any space.'
+    },
   ];
 
   return (

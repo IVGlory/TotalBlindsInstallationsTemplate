@@ -16,20 +16,26 @@ const useStyles = makeStyles(() => ({
 
 interface BlindsSectionProps {
   title: string;
-  blindsData: Array<{ image: string; text: string; description: string }>;
+  blindsData: Array<{
+    images: { [key: string]: string };
+    text: string;
+    description: string;
+  }>;
 }
 
 const BlindsSection: React.FC<BlindsSectionProps> = ({ title, blindsData }) => {
   const classes = useStyles();
   const [open, setOpen] = useState<boolean>(false);
-  const [selectedImage, setSelectedImage] = useState<string>('');
+  const [selectedImage, setSelectedImage] = useState<{ [key: string]: string }>({});
   const [selectedText, setSelectedText] = useState<string>('');
   const [selectedDescription, setSelectedDescription] = useState<string>('');
+  const [selectedColor, setSelectedColor] = useState<string>('');
 
-  const handleCardClick = (image: string, text: string, description: string) => {
-    setSelectedImage(image);
+  const handleCardClick = (images: { [key: string]: string }, text: string, description: string, currentColor: string) => {
+    setSelectedImage(images);
     setSelectedText(text);
     setSelectedDescription(description);
+    setSelectedColor(currentColor);
     setOpen(true);
   };
 
@@ -44,20 +50,23 @@ const BlindsSection: React.FC<BlindsSectionProps> = ({ title, blindsData }) => {
         {blindsData.map((blind, index) => (
           <Grid key={index} item xs={12} sm={6} md={3}>
             <BlindsCard
-              image={blind.image}
+              images={blind.images}
               text={blind.text}
               description={blind.description}
-              onClick={() => handleCardClick(blind.image, blind.text, blind.description)} 
-              index={index}            />
+              onClick={(currentColor) => handleCardClick(blind.images, blind.text, blind.description, currentColor)} 
+              index={index}
+              onColorChange={setSelectedColor}
+            />
           </Grid>
         ))}
       </Grid>
       <BlindsDialog
         open={open}
         onClose={handleClose}
-        selectedImage={selectedImage}
+        images={selectedImage}
         selectedText={selectedText}
         selectedDescription={selectedDescription}
+        initialColor={selectedColor}
       />
     </div>
   );
