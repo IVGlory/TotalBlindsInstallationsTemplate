@@ -9,17 +9,35 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import InfoIcon from '@mui/icons-material/Info';
 import Tooltip from '@mui/material/Tooltip';
-import { Link } from 'react-router-dom';
 import OptionSection from './OptionSectionProps';
 import { useNavigate } from 'react-router-dom';
 
 const useStyles = makeStyles(() => ({
   dialogImage: {
     width: '100%',
-    height: '100%',
+    height: 400,
     position: 'relative',
     borderRadius: '15px',
     boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)',
+    overflow: 'hidden',
+  },
+  zoomContainer: {
+    position: 'absolute',
+    bottom: 10,
+    right: 10,
+    width: 150,
+    height: 150,
+    border: '2px solid #fff',
+    borderRadius: '5px',
+    overflow: 'hidden',
+    display: 'none',
+    zIndex: 2,
+  },
+  zoomImage: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    transformOrigin: '0 0',
   },
   dialogContent: {
     display: 'flex',
@@ -110,10 +128,10 @@ const useStyles = makeStyles(() => ({
     '&.Mui-expanded': {
       borderBottomLeftRadius: 0,
       borderBottomRightRadius: 0,
-      '&:hover': {
-        backgroundColor: 'rgba(236, 201, 130, 0.25)', // Golden hover background color
-        justifyContent: 'center',
-      },
+    },
+    '&:hover': {
+      backgroundColor: 'rgba(236, 201, 130, 0.25)', // Golden hover background color
+      justifyContent: 'center',
     },
   },
   accordionDetails: {
@@ -153,6 +171,31 @@ const BlindsDialog: React.FC<BlindsDialogProps> = ({
   const [lightControl, setLightControl] = useState<string | null>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [showScrollButtons, setShowScrollButtons] = useState(false);
+  const [isHovering, setIsHovering] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const imageRef = useRef<HTMLDivElement>(null);
+  const zoomRef = useRef<HTMLDivElement>(null);
+
+  const handleMouseEnter = () => setIsHovering(true);
+  const handleMouseLeave = () => setIsHovering(false);
+  
+
+  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (imageRef.current && zoomRef.current) {
+      const { width, height } = imageRef.current.getBoundingClientRect();
+      const x = event.nativeEvent.offsetX / width;
+      const y = event.nativeEvent.offsetY / height;
+  
+      setMousePosition({ x, y });
+  
+      const zoomImg = zoomRef.current.querySelector('img') as HTMLImageElement;
+      if (zoomImg) {
+        const scaleFactor = 2;
+        zoomImg.style.transform = `scale(${scaleFactor})`;
+        zoomImg.style.transformOrigin = `${x * 100}% ${y * 100}%`;
+      }
+    }
+  };
 
   useEffect(() => {
     setSelectedColor(initialColor);
@@ -240,12 +283,35 @@ const BlindsDialog: React.FC<BlindsDialogProps> = ({
         </IconButton>
       </DialogTitle>
       <DialogContent className={classes.dialogContent}>
-        <div className={classes.dialogImage}>
-          <img src={images[selectedColor]} alt="Expanded Image" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-          <Typography variant="body2" component="p" className={classes.overlayText}>
-            {selectedColor}
-          </Typography>
-        </div>
+      <div 
+        className={classes.dialogImage}
+        ref={imageRef}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        onMouseMove={handleMouseMove}
+      >
+        <img 
+          src={images[selectedColor]} 
+          alt="Expanded Image" 
+          style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+        />
+        <Typography variant="body2" component="p" className={classes.overlayText}>
+          {selectedColor}
+        </Typography>
+        {isHovering && (
+          <Box className={classes.zoomContainer} ref={zoomRef} style={{ display: 'block' }}>
+            <img
+              src={images[selectedColor]}
+              alt={selectedText}
+              className={classes.zoomImage}
+              style={{
+                width: '200%',
+                height: '200%',
+              }}
+            />
+          </Box>
+        )}
+      </div>
         <Box className={classes.colorSelectorContainer}>
           {showScrollButtons && (
             <IconButton
@@ -280,6 +346,20 @@ const BlindsDialog: React.FC<BlindsDialogProps> = ({
             </IconButton>
           )}
         </Box>
+
+        <Accordion className={classes.accordion}>
+          <AccordionSummary
+            expandIcon={<ExpandMore />}
+            className={classes.accordionSummary}
+          >
+            <Typography sx={{ fontWeight: 'bold' }}>Details</Typography>
+          </AccordionSummary>
+          <AccordionDetails className={classes.accordionDetails}>
+            <Typography variant="body1" component="p">
+              {selectedDescription}
+            </Typography>
+          </AccordionDetails>
+        </Accordion>
         
         <Accordion className={classes.accordion}>
           <AccordionSummary
@@ -320,20 +400,6 @@ const BlindsDialog: React.FC<BlindsDialogProps> = ({
               onSelect={handleLightControlChange}
               infoText=""
             />
-          </AccordionDetails>
-        </Accordion>
-
-        <Accordion className={classes.accordion}>
-          <AccordionSummary
-            expandIcon={<ExpandMore />}
-            className={classes.accordionSummary}
-          >
-            <Typography sx={{ fontWeight: 'bold' }}>Details</Typography>
-          </AccordionSummary>
-          <AccordionDetails className={classes.accordionDetails}>
-            <Typography variant="body1" component="p">
-              {selectedDescription}
-            </Typography>
           </AccordionDetails>
         </Accordion>
         <Button 

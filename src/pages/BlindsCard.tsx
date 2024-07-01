@@ -12,8 +12,9 @@ const useStyles = makeStyles({
     marginBottom: '20px',
   },
   media: {
-    height: 140,
+    height: 280, // Increased from 140
     position: 'relative',
+    overflow: 'hidden',
   },
   overlayText: {
     position: 'absolute',
@@ -74,6 +75,23 @@ const useStyles = makeStyles({
   rightScrollButton: {
     right: 0,
   },
+  zoomContainer: {
+    position: 'absolute',
+    bottom: 10,
+    right: 10,
+    width: 100,
+    height: 100,
+    border: '2px solid #fff',
+    borderRadius: '5px',
+    overflow: 'hidden',
+    display: 'none',
+  },
+  zoomImage: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    transformOrigin: '0 0',
+  },
 });
 
 interface BlindsCardProps {
@@ -91,6 +109,30 @@ const BlindsCard: React.FC<BlindsCardProps> = ({ images, text, description, onCl
   const [selectedColor, setSelectedColor] = useState(Object.keys(images)[0]);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [showScrollButtons, setShowScrollButtons] = useState(false);
+  const [isHovering, setIsHovering] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const imageRef = useRef<HTMLDivElement>(null);
+  const zoomRef = useRef<HTMLDivElement>(null)
+
+  const handleMouseEnter = () => setIsHovering(true);
+  const handleMouseLeave = () => setIsHovering(false);
+
+  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (imageRef.current && zoomRef.current) {
+      const { width, height } = imageRef.current.getBoundingClientRect();
+      const x = event.nativeEvent.offsetX / width;
+      const y = event.nativeEvent.offsetY / height;
+  
+      setMousePosition({ x, y });
+  
+      const zoomImg = zoomRef.current.querySelector('img') as HTMLImageElement;
+      if (zoomImg) {
+        const scaleFactor = 2;
+        zoomImg.style.transform = `scale(${scaleFactor})`;
+        zoomImg.style.transformOrigin = `${x * 100}% ${y * 100}%`;
+      }
+    }
+  };
 
   useEffect(() => {
     const checkScrollable = () => {
@@ -145,10 +187,27 @@ const BlindsCard: React.FC<BlindsCardProps> = ({ images, text, description, onCl
               className={classes.media}
               image={images[selectedColor]}
               title={text}
+              ref={imageRef}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+              onMouseMove={handleMouseMove}
             >
               <Typography variant="body2" component="p" className={classes.overlayText}>
                 {selectedColor}
               </Typography>
+              {isHovering && (
+                <Box className={classes.zoomContainer} ref={zoomRef} style={{ display: 'block' }}>
+                  <img
+                    src={images[selectedColor]}
+                    alt={text}
+                    className={classes.zoomImage}
+                    style={{
+                      width: '200%',
+                      height: '200%',
+                    }}
+                  />
+                </Box>
+              )}
             </CardMedia>
             <Box className={classes.colorSelectorContainer}>
                 {showScrollButtons && (
