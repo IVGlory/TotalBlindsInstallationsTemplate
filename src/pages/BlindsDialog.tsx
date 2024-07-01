@@ -20,7 +20,6 @@ const useStyles = makeStyles((theme:Theme) => ({
     position: 'relative',
     borderRadius: '15px',
     boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)',
-    overflow: 'hidden',
   },
   zoomContainer: {
     position: 'absolute',
