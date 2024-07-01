@@ -1,19 +1,20 @@
 {
   "files": {
     "main.css": "/TotalBlindsInstallationsTemplate/static/css/main.4dec2455.css",
-    "main.js": "/TotalBlindsInstallationsTemplate/static/js/main.23e6071b.js",
+    "main.js": "/TotalBlindsInstallationsTemplate/static/js/main.a44e7f88.js",
     "static/js/787.3b1d55aa.chunk.js": "/TotalBlindsInstallationsTemplate/static/js/787.3b1d55aa.chunk.js",
+    "static/media/4kTest.webp": "/TotalBlindsInstallationsTemplate/static/media/4kTest.62faf66d26faf1a334ee.webp",
     "static/media/homePage.jpg": "/TotalBlindsInstallationsTemplate/static/media/homePage.7cc155ebf3c653edf29b.jpg",
     "static/media/blinds1.webp": "/TotalBlindsInstallationsTemplate/static/media/blinds1.154758daf478125b82da.webp",
     "static/media/blinds3.jpg": "/TotalBlindsInstallationsTemplate/static/media/blinds3.3a9328be6b66ad6d5e3f.jpg",
     "static/media/blinds2.webp": "/TotalBlindsInstallationsTemplate/static/media/blinds2.825e41d5ec70886cc348.webp",
     "index.html": "/TotalBlindsInstallationsTemplate/index.html",
     "main.4dec2455.css.map": "/TotalBlindsInstallationsTemplate/static/css/main.4dec2455.css.map",
-    "main.23e6071b.js.map": "/TotalBlindsInstallationsTemplate/static/js/main.23e6071b.js.map",
+    "main.a44e7f88.js.map": "/TotalBlindsInstallationsTemplate/static/js/main.a44e7f88.js.map",
     "787.3b1d55aa.chunk.js.map": "/TotalBlindsInstallationsTemplate/static/js/787.3b1d55aa.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.4dec2455.css",
-    "static/js/main.23e6071b.js"
+    "static/js/main.a44e7f88.js"
   ]
 }
