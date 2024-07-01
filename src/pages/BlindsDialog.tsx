@@ -2,7 +2,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import { makeStyles } from '@mui/styles';
 import { 
   Dialog, DialogContent, DialogTitle, IconButton, Typography, Button, 
-  Slide, SlideProps, Box, Accordion, AccordionSummary, AccordionDetails
+  Slide, SlideProps, Box, Accordion, AccordionSummary, AccordionDetails,
+  Theme, useMediaQuery
 } from '@mui/material';
 import { Close, ExpandMore } from '@mui/icons-material';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
@@ -12,7 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import OptionSection from './OptionSectionProps';
 import { useNavigate } from 'react-router-dom';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme:Theme) => ({
   dialogImage: {
     width: '100%',
     height: 400,
@@ -27,11 +28,15 @@ const useStyles = makeStyles(() => ({
     right: 10,
     width: 150,
     height: 150,
-    border: '2px solid #fff',
+    border: '2px solid #000000',
     borderRadius: '5px',
     overflow: 'hidden',
     display: 'none',
     zIndex: 2,
+    '@media (max-width: 600px)': {
+      width: 100,
+      height: 100,
+    },
   },
   zoomImage: {
     position: 'absolute',
@@ -182,20 +187,25 @@ const BlindsDialog: React.FC<BlindsDialogProps> = ({
 
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
     if (imageRef.current && zoomRef.current) {
-      const { width, height } = imageRef.current.getBoundingClientRect();
-      const x = event.nativeEvent.offsetX / width;
-      const y = event.nativeEvent.offsetY / height;
-  
+      const { left, top, width, height } = imageRef.current.getBoundingClientRect();
+      const x = (event.clientX - left) / width;
+      const y = (event.clientY - top) / height;
+
       setMousePosition({ x, y });
-  
+
       const zoomImg = zoomRef.current.querySelector('img') as HTMLImageElement;
       if (zoomImg) {
-        const scaleFactor = 2;
-        zoomImg.style.transform = `scale(${scaleFactor})`;
-        zoomImg.style.transformOrigin = `${x * 100}% ${y * 100}%`;
+        const scaleFactor = 3;
+        const zoomWidth = window.innerWidth <= 600 ? 100 : 150;
+        const zoomHeight = window.innerWidth <= 600 ? 100 : 150;
+
+        zoomImg.style.width = `${width * scaleFactor}px`;
+        zoomImg.style.height = `${height * scaleFactor}px`;
+        zoomImg.style.transform = `translate(${-x * (width * scaleFactor - zoomWidth)}px, ${-y * (height * scaleFactor - zoomHeight)}px)`;
       }
     }
   };
+
 
   useEffect(() => {
     setSelectedColor(initialColor);
@@ -304,10 +314,6 @@ const BlindsDialog: React.FC<BlindsDialogProps> = ({
               src={images[selectedColor]}
               alt={selectedText}
               className={classes.zoomImage}
-              style={{
-                width: '200%',
-                height: '200%',
-              }}
             />
           </Box>
         )}
@@ -318,6 +324,7 @@ const BlindsDialog: React.FC<BlindsDialogProps> = ({
               className={`${classes.scrollButton} ${classes.leftScrollButton}`}
               onClick={(e) => handleScroll('left', e)}
               size="small"
+              style={{ display: 'contents' }}
             >
               <ArrowBackIosNewIcon fontSize="small" />
             </IconButton>
@@ -341,6 +348,7 @@ const BlindsDialog: React.FC<BlindsDialogProps> = ({
               className={`${classes.scrollButton} ${classes.rightScrollButton}`}
               onClick={(e) => handleScroll('right', e)}
               size="small"
+              style={{ display: 'contents' }}
             >
               <ArrowForwardIosIcon fontSize="small" />
             </IconButton>

@@ -52,7 +52,7 @@ const useStyles = makeStyles({
     height: 30,
     minWidth: 30,
     margin: '0 5px',
-    border: '2px solid #fff',
+    border: '2px solid #000000',
     borderRadius: '50%',
     cursor: 'pointer',
   },
@@ -62,7 +62,7 @@ const useStyles = makeStyles({
     transform: 'translateY(-50%)',
     zIndex: 1,
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    color: '#fff',
+    color: '#000000',
     padding: '4px',
     '&:hover': {
       backgroundColor: 'rgba(0, 0, 0, 0.7)',
@@ -81,10 +81,11 @@ const useStyles = makeStyles({
     right: 10,
     width: 100,
     height: 100,
-    border: '2px solid #fff',
+    border: '2px solid #000000',
     borderRadius: '5px',
     overflow: 'hidden',
     display: 'none',
+    zIndex: 2,
   },
   zoomImage: {
     position: 'absolute',
@@ -112,24 +113,28 @@ const BlindsCard: React.FC<BlindsCardProps> = ({ images, text, description, onCl
   const [isHovering, setIsHovering] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const imageRef = useRef<HTMLDivElement>(null);
-  const zoomRef = useRef<HTMLDivElement>(null)
+  const zoomRef = useRef<HTMLDivElement>(null);
 
   const handleMouseEnter = () => setIsHovering(true);
   const handleMouseLeave = () => setIsHovering(false);
 
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
     if (imageRef.current && zoomRef.current) {
-      const { width, height } = imageRef.current.getBoundingClientRect();
-      const x = event.nativeEvent.offsetX / width;
-      const y = event.nativeEvent.offsetY / height;
-  
+      const { left, top, width, height } = imageRef.current.getBoundingClientRect();
+      const x = (event.clientX - left) / width;
+      const y = (event.clientY - top) / height;
+
       setMousePosition({ x, y });
-  
+
       const zoomImg = zoomRef.current.querySelector('img') as HTMLImageElement;
       if (zoomImg) {
-        const scaleFactor = 2;
-        zoomImg.style.transform = `scale(${scaleFactor})`;
-        zoomImg.style.transformOrigin = `${x * 100}% ${y * 100}%`;
+        const scaleFactor = 3;
+        const zoomWidth = window.innerWidth <= 600 ? 100 : 150;
+        const zoomHeight = window.innerWidth <= 600 ? 100 : 150;
+
+        zoomImg.style.width = `${width * scaleFactor}px`;
+        zoomImg.style.height = `${height * scaleFactor}px`;
+        zoomImg.style.transform = `translate(${-x * (width * scaleFactor - zoomWidth)}px, ${-y * (height * scaleFactor - zoomHeight)}px)`;
       }
     }
   };

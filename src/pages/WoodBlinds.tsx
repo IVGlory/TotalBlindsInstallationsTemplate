@@ -4,6 +4,7 @@ import blinds1 from '../assets/blinds1.webp';
 import blinds2 from '../assets/blinds2.webp';
 import blinds3 from '../assets/blinds3.jpg';
 import blinds4 from '../assets/blinds4.jpg';
+import blackBlinds from '../assets/4kTest.webp';
 import { makeStyles } from '@mui/styles';
 import woodBlinds from '../assets/homePage.jpg';
 
@@ -30,7 +31,7 @@ const WoodBlinds: React.FC = () => {
   const blindsData: BlindData[] = [
     { 
       images: {
-        'Natural': blinds1,
+        'Natural': blackBlinds,
         'Mahogany': blinds2,
         'White': blinds3,
       },
@@ -39,7 +40,7 @@ const WoodBlinds: React.FC = () => {
     },
     { 
       images: {
-        'Beige': blinds2,
+        'Beige': blackBlinds,
         'Gray': blinds3,
         'Brown': blinds4,
         'Green': blinds3,
@@ -51,7 +52,7 @@ const WoodBlinds: React.FC = () => {
     },
     { 
       images: {
-        'White': blinds3,
+        'White': blackBlinds,
         'Black': blinds4,
         'Silver': blinds1,
         'Beige': blinds3,
@@ -66,7 +67,7 @@ const WoodBlinds: React.FC = () => {
     },
     { 
       images: {
-        'Cream': blinds4,
+        'Cream': blackBlinds,
         'Navy': blinds1,
         'Green': blinds2,
       },
