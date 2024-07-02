@@ -4,7 +4,7 @@ import blinds1 from '../assets/blinds1.webp';
 import blinds2 from '../assets/blinds2.webp';
 import blinds3 from '../assets/blinds3.jpg';
 import blinds4 from '../assets/blinds4.jpg';
-import blackBlinds from '../assets/4kTest.webp';
+import blackBlinds from '../assets/4kBlackBlinds.webp';
 import { makeStyles } from '@mui/styles';
 import woodBlinds from '../assets/homePage.jpg';
 

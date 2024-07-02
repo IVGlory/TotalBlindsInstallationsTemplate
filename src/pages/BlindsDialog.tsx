@@ -32,10 +32,6 @@ const useStyles = makeStyles((theme:Theme) => ({
     overflow: 'hidden',
     display: 'none',
     zIndex: 2,
-    '@media (max-width: 600px)': {
-      width: 100,
-      height: 100,
-    },
   },
   zoomImage: {
     position: 'absolute',
@@ -177,34 +173,42 @@ const BlindsDialog: React.FC<BlindsDialogProps> = ({
   const [showScrollButtons, setShowScrollButtons] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isMobile, setIsMobile] = useState(false);
   const imageRef = useRef<HTMLDivElement>(null);
   const zoomRef = useRef<HTMLDivElement>(null);
 
-  const handleMouseEnter = () => setIsHovering(true);
-  const handleMouseLeave = () => setIsHovering(false);
-  
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 600);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const handleMouseEnter = () => !isMobile && setIsHovering(true);
+  const handleMouseLeave = () => !isMobile && setIsHovering(false);
 
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
-    if (imageRef.current && zoomRef.current) {
-      const { left, top, width, height } = imageRef.current.getBoundingClientRect();
-      const x = (event.clientX - left) / width;
-      const y = (event.clientY - top) / height;
+    if (isMobile || !imageRef.current || !zoomRef.current) return;
 
-      setMousePosition({ x, y });
+    const { left, top, width, height } = imageRef.current.getBoundingClientRect();
+    const x = (event.clientX - left) / width;
+    const y = (event.clientY - top) / height;
 
-      const zoomImg = zoomRef.current.querySelector('img') as HTMLImageElement;
-      if (zoomImg) {
-        const scaleFactor = 3;
-        const zoomWidth = window.innerWidth <= 600 ? 100 : 150;
-        const zoomHeight = window.innerWidth <= 600 ? 100 : 150;
+    setMousePosition({ x, y });
 
-        zoomImg.style.width = `${width * scaleFactor}px`;
-        zoomImg.style.height = `${height * scaleFactor}px`;
-        zoomImg.style.transform = `translate(${-x * (width * scaleFactor - zoomWidth)}px, ${-y * (height * scaleFactor - zoomHeight)}px)`;
-      }
+    const zoomImg = zoomRef.current.querySelector('img') as HTMLImageElement;
+    if (zoomImg) {
+      const scaleFactor = 4;
+      const zoomWidth = 150;
+      const zoomHeight = 150;
+
+      zoomImg.style.width = `${width * scaleFactor}px`;
+      zoomImg.style.height = `${height * scaleFactor}px`;
+      zoomImg.style.transform = `translate(${-x * (width * scaleFactor - zoomWidth)}px, ${-y * (height * scaleFactor - zoomHeight)}px)`;
     }
   };
-
 
   useEffect(() => {
     setSelectedColor(initialColor);
@@ -307,7 +311,7 @@ const BlindsDialog: React.FC<BlindsDialogProps> = ({
         <Typography variant="body2" component="p" className={classes.overlayText}>
           {selectedColor}
         </Typography>
-        {isHovering && (
+        {!isMobile && isHovering && (
           <Box className={classes.zoomContainer} ref={zoomRef} style={{ display: 'block' }}>
             <img
               src={images[selectedColor]}
