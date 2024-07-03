@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AppBar, Toolbar, Button, Menu, MenuItem, Box } from '@mui/material';
+import { AppBar, Toolbar, Button, Menu, MenuItem } from '@mui/material';
 import { Link, useLocation } from 'react-router-dom';
 
 const Navbar: React.FC = () => {
@@ -25,7 +25,7 @@ const Navbar: React.FC = () => {
         </Box> */}
         <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap' }}>
           <Button color="inherit" component={Link} to="/TotalBlindsInstallationsTemplate" style={{backgroundColor: location.pathname === '/TotalBlindsInstallationsTemplate' ? "rgba(236,201,130,0.25)" : "#000000", margin: '5px' }}>Home</Button>
-          <Button color="inherit" onClick={handleProductsMenuOpen} style={{margin: '5px' , backgroundColor: location.pathname === '/WoodBlinds' || location.pathname === '/FauxWoodBlinds' || location.pathname === '/FabricBlinds' || location.pathname === '/MotorizedBlinds'? "rgba(236,201,130,0.25)" : "#000000" }}>Products</Button>
+          <Button color="inherit" onClick={handleProductsMenuOpen} style={{margin: '5px' , backgroundColor: location.pathname === '/WoodBlinds' || location.pathname === '/FauxWoodBlinds' || location.pathname === '/FabricBlinds' || location.pathname === '/MotorizedBlinds' || location.pathname === '/Catalog'? "rgba(236,201,130,0.25)" : "#000000" }}>Products</Button>
           <Button color="inherit" component={Link} to="/ContactInfo" style={{margin: '5px' }}>Contact</Button>
           <Button color="inherit" component={Link} to="/Booking" style={{backgroundColor: location.pathname === '/Booking' ? "rgba(236,201,130,0.25)" : "#000000", margin: '5px' }}>Book Appointment</Button>
         </div>
@@ -39,6 +39,7 @@ const Navbar: React.FC = () => {
           <MenuItem onClick={handleProductsMenuClose} component={Link} to="/FauxWoodBlinds">Faux Wood Blinds</MenuItem>
           <MenuItem onClick={handleProductsMenuClose} component={Link} to="/FabricBlinds" >Fabric Blinds</MenuItem>
           <MenuItem onClick={handleProductsMenuClose} component={Link} to="/MotorizedBlinds" >Motorized Blinds</MenuItem>
+          <MenuItem onClick={handleProductsMenuClose} component={Link} to="/Catalog">Catalog</MenuItem>
         </Menu>
       </Toolbar>
     </AppBar>

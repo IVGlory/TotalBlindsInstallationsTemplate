@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@mui/styles';
 import { Typography, Container } from '@mui/material';
 import homePage from '../assets/homePage.jpg';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
   '@global': {
     'html, body': {
-      overflow: 'hidden', // Disable scrolling globally for the home page
+      overflow: 'hidden',
     },
   },
   hero: { 
@@ -31,7 +32,7 @@ const useStyles = makeStyles({
     left: 0,
     width: '100%',
     height: '100%',
-    backgroundColor: 'rgba(0, 0, 0, .92)',
+    backgroundColor: 'rgba(0, 0, 0, .85)',
     zIndex: 0,
   },
   animatedText: {
@@ -49,6 +50,29 @@ const useStyles = makeStyles({
       transform: 'translateY(0)',
     },
   },
+  subtitle: {
+    marginBottom: '22px !important',
+  },
+  exploreLink: {
+    cursor: 'pointer',
+    textDecoration: 'none',
+    transition: 'all 0.3s',
+    marginTop: '20px',
+    display: 'inline-block',
+  },
+  containerHover: {
+    '&:hover $exploreLink': {
+      textDecoration: 'underline',
+    },
+  },
+  exploreLinkText: {
+    transition: 'transform 0.3s',
+    display: 'inline-block',
+    '$containerHover:hover &': {
+      transform: 'scale(1.05)',
+      textDecoration: 'underline',
+    },
+  },
 });
 
 const Home: React.FC = () => {
@@ -56,37 +80,47 @@ const Home: React.FC = () => {
   const [animate, setAnimate] = useState(false);
 
   useEffect(() => {
-    // Trigger animation after component mounts
     setAnimate(true);
-
-    // Scroll to top when component mounts
     window.scrollTo(0, 0);
-
-    // Clean up when component unmounts to restore default scrolling
     return () => {
       document.body.style.overflow = 'visible';
     };
   }, []);
 
+
   return (
     <div className={classes.hero}>
       <div className={classes.overlay} />
-      <Container maxWidth="md" className={classes.contentContainer}>
+      <Container maxWidth="md" className={`${classes.contentContainer} ${classes.containerHover}`}>
         <Typography
           variant="h1"
-          component="h2"
+          component="h1"
           gutterBottom
           className={animate ? classes.animatedText : ''}
         >
-          Welcome to
+          WELCOME TO LUX BLINDS
         </Typography>
         <Typography
-          variant="h1"
+          variant="h2"
           component="h2"
-          gutterBottom
-          className={animate ? classes.animatedText : ''}
+          className={`${classes.subtitle} ${animate ? classes.animatedText : ''}`}
         >
-          LUX BLINDS
+          Illuminate With Elegance
+        </Typography>
+        <Typography
+          variant="body1"
+          className={`${classes.subtitle} ${animate ? classes.animatedText : ''}`}
+        >
+         We specialize in providing and installing high-quality blinds, shades, and shutters to transform your home or office.
+         With our expert craftsmanship and extensive selection, we help you create the perfect ambiance for any room.
+        </Typography>
+        <Typography 
+          variant="h2"
+          component={Link}
+          to="/Catalog"
+          className={`${classes.exploreLink} ${animate ? classes.animatedText : ''}`}
+        >
+          <span className={classes.exploreLinkText}>Explore Our Collection</span>
         </Typography>
       </Container>
     </div>

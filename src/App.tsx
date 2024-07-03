@@ -8,6 +8,7 @@ import WoodBlinds from './pages/WoodBlinds';
 import FauxWoodBlinds from './pages/FauxWoodBlinds';
 import FabricBlinds from './pages/FabricBlinds';
 import MotorizedBlinds from './pages/MotorizedBlinds';
+import Catalog from './pages/Catalog';
 import Theme from './Theme';
 import { ThemeProvider } from '@emotion/react';
 
@@ -25,6 +26,7 @@ const App: React.FC = () => {
             <Route path="/FauxWoodBlinds" element={<FauxWoodBlinds />} />
             <Route path="/FabricBlinds" element={<FabricBlinds />} />
             <Route path="/MotorizedBlinds" element={<MotorizedBlinds />} />
+            <Route path="/Catalog" element={<Catalog />} />
           </Routes>
         </div>
       </Router>

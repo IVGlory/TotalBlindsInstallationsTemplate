@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AppBar, Toolbar, Typography, Button, Menu, MenuItem, Box } from '@mui/material';
+import { AppBar, Toolbar, Typography, Button, Menu, MenuItem } from '@mui/material';
 import { Link, useLocation } from 'react-router-dom';
 
 const Navbar: React.FC = () => {
@@ -39,7 +39,8 @@ const Navbar: React.FC = () => {
           style={{ backgroundColor: location.pathname === '/WoodBlinds' ||
             location.pathname === '/FauxWoodBlinds' || 
             location.pathname === '/FabricBlinds' ||
-            location.pathname === '/MotorizedBlinds'
+            location.pathname === '/MotorizedBlinds' ||
+            location.pathname === '/Catalog'
             ? "rgba(236,201,130,0.25)" : "#000000" }}
         >
           Products
@@ -54,6 +55,7 @@ const Navbar: React.FC = () => {
           <MenuItem onClick={handleProductsMenuClose} component={Link} to="/FauxWoodBlinds">Faux Wood Blinds</MenuItem>
           <MenuItem onClick={handleProductsMenuClose} component={Link} to="/FabricBlinds">Fabric Blinds</MenuItem>
           <MenuItem onClick={handleProductsMenuClose} component={Link} to="/MotorizedBlinds">Motorized Blinds</MenuItem>
+          <MenuItem onClick={handleProductsMenuClose} component={Link} to="/Catalog">Catalog</MenuItem>
         </Menu>
 
         {/* Contact Dropdown */}
